@@ -1,0 +1,3 @@
+# Work in progress...
+
+[![GoDoc](https://img.shields.io/badge/godoc-reference-blue.svg)](https://godoc.org/github.com/dolmen-go/go-must)
