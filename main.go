@@ -21,7 +21,7 @@ func main() {
 	flag.BoolVar(&doNothing, `n`, false, `do nothing`)
 	flag.Parse()
 
-	// TODO add '!test' build tag
+	// TODO add '!test' and '!gomust' build tags
 	//ctx := parser.Default
 	// ctx.BuildTags = strings.Split(tags, ",", -1)
 
@@ -34,7 +34,13 @@ func main() {
 
 	allFuncs := make(map[string]*ast.FuncDecl)
 	for _, pack := range packs {
+		if strings.HasSuffix(pack.Name, "_test") {
+			continue
+		}
 		for _, f := range pack.Files {
+			if strings.HasSuffix(f.Name.Name, "_test.go") {
+				continue
+			}
 			for _, d := range f.Decls {
 				if fn, isFn := d.(*ast.FuncDecl); isFn {
 					if fn.Recv != nil {
