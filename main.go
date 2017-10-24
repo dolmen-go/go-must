@@ -46,8 +46,7 @@ func main() {
 					if fn.Recv != nil {
 						continue
 					}
-					firstLetter, _ := utf8.DecodeRuneInString(fn.Name.Name)
-					if !unicode.IsUpper(firstLetter) {
+					if !fn.Name.IsExported() {
 						continue
 					}
 					results := fn.Type.Results
